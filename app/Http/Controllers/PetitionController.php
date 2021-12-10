@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Resources\PetitionCollection;
 use App\Http\Resources\PetitionResource;
 use App\Models\Petition;
-use http\Env\Response;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class PetitionController extends Controller
 {
