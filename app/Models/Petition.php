@@ -10,7 +10,7 @@ class Petition extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'description', 'category', 'author', 'signees'];
-    protected $guarded;
+    //protected $guarded;
 
     /*
     public static function create(array $only)

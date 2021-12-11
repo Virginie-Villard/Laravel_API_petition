@@ -35,6 +35,13 @@ Run migrations
 ./vendor/bin/sail artisan migrate
 ```
 
+Runing seeders
+```
+sail artisan db:seed
+```
+
+
+
 ## MySQL
 
 Go to services, open a terminal for mysql container.
@@ -42,13 +49,13 @@ Go to services, open a terminal for mysql container.
 Connect to mysql
 
 ```bash
-mysql - u sail -p
+mysql -u sail -p
 ```
 
 Select the database
 
 ```sql
-use petition;
+use petitions_db;
 ```
 
 List tables on a selected database

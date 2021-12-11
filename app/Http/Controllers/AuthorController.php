@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AuthorCollection;
+use App\Http\Resources\AuthorResource;
 use App\Models\author;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class AuthorController extends Controller
 {
@@ -14,7 +17,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        return \response()->json(new AuthorCollection(Author::all()), Response::HTTP_OK);
     }
 
     /**
@@ -33,9 +36,13 @@ class AuthorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): AuthorResource
     {
-        //
+        $author = Author::create($request->only([
+            'name', 'email', 'email-verified-at', 'password'
+        ]));
+
+        return new AuthorResource($author);
     }
 
     /**
@@ -46,7 +53,7 @@ class AuthorController extends Controller
      */
     public function show(author $author)
     {
-        //
+        return new AuthorResource($author);
     }
 
     /**
@@ -69,7 +76,9 @@ class AuthorController extends Controller
      */
     public function update(Request $request, author $author)
     {
-        //
+        $author->update($request->only([
+            'name', 'email', 'email-verified-at', 'password'
+        ]));
     }
 
     /**
@@ -80,6 +89,8 @@ class AuthorController extends Controller
      */
     public function destroy(author $author)
     {
-        //
+        $author->delete();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }
